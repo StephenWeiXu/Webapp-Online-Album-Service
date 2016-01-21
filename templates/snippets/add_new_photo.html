@@ -1,0 +1,30 @@
+
+<div>
+	<!-- Button trigger modal -->
+	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#add_new_pic">
+	  Add New Picture
+	</button>
+
+	<!-- Modal -->
+	<div class="modal fade" id="add_new_pic" tabindex="-1" role="dialog" aria-labelledby="add_new_pic_label">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="add_new_pic_label">Add New Photo</h4>
+	      </div>
+				<form action="" method="POST" enctype="multipart/form-data">				     
+				<div class="modal-body">
+			        <input type="hidden" name="op" value="add">
+			        <input type="hidden" name="albumid" value="{{ albumid }}">
+			        <input id="file_input" type="file" name="file" accept="image/gif,image/jpeg,image/png,image/x-ms-bmp" required>
+		        </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+		        <input id="file_submit" type="submit" class="btn btn-primary" value="Add New">
+	      	 </div>
+	      </form>
+	    </div>
+	  </div>
+	</div>
+</div>

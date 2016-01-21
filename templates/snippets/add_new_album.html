@@ -1,0 +1,28 @@
+
+<div>
+	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#add_new_album">
+	  Add New Album
+	</button>
+
+	<div class="modal fade" id="add_new_album" tabindex="-1" role="dialog" aria-labelledby="add_new_album_label">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="add_new_album_label">Add New Album</h4>
+	      </div>
+	      <form action="" method="POST">
+		      <div class="modal-body">
+		      	<input type="hidden" name="op" value="add">
+		      	<input type="hidden" name="username" value="{{username}}">
+		        <div>Album Title: &nbsp;<input id="album_add_name" type="text" name="title" required></div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+		        <input id="album_add_submit" type="submit" class="btn btn-primary" value="Add New">
+	      	 </div>
+	      </form>
+	    </div>
+	  </div>
+	</div>
+</div>

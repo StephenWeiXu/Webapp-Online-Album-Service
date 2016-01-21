@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+    <header><a href="{{ url_for('main.main_route') }}">Photo Albums Collection</a></header>
+    <h1>PIC</h1>
+
+  <div class="edit-component">
+    <a id="parent_album" href="{{ url_for('album.album_route', id=albumid) }}">
+      <button class="btn btn-primary btn-lg">Return to Album</button>
+    </a>
+  </div>
+
+  <div class="information-content">
+    <table align="center">
+    <td>
+      {% if prev_picid %}
+        <a id="prev_pic" href="{{ url_for('pic.pic_route', id=prev_picid) }}">
+          <button class="btn btn-primary">Previous</button>
+        </a>     
+      {% endif %}
+    </td>
+    <td><img src="{{ url_for('static', filename='images/'+picid+'.'+format) }}"/></td>
+
+    <td>
+      {% if next_picid %}
+        <a id="next_pic" href="{{ url_for('pic.pic_route', id=next_picid) }}">
+          <button class="btn btn-primary">Next</button>
+        </a> 
+      {% endif %}
+    </td>
+  </div>
+
+{% endblock %}

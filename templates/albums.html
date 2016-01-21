@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <header><a href="{{ url_for('main.main_route') }}">Photo Albums Collection</a></header>
+
+    <h1>ALBUMS</h1>
+
+    <div class="information-content">
+    {% if user_albums %}
+        <table class="album_table" align="center">
+    		{% for album in user_albums %}
+              {% set album_link_id =  "album_" + album[0]|string() + "_link" %}
+    			<tr>
+    				<td><a id="{{ album_link_id }}" href="{{ url_for('album.album_route', id=album[0])}}">{{ album[1] }}</a></td>
+
+                    {% if edit %}
+                        {% set delete_album_id = "delete_album_" + album[0]|string() %}
+    				<td>
+                        <a href="{{ url_for('album.album_edit_route', id=album[0])}}" >Edit</a>
+    				</td>
+    				<td>
+    					<form action="" method="POST">
+    						<input type="hidden" name="op" value="delete">
+    						<input type="hidden" name="albumid" value="{{ album[0] }}">
+    						<button id="{{ delete_album_id }}" class="btn btn-primary" type="submit">Delete</button>
+    					</form>
+    				</td>
+                    {% endif %}
+    			</tr>
+    		{% endfor %}
+        </table>
+    {% else %}
+       <p>Oops...There is no album for this user!</p>
+    {% endif %}
+    </div>
+
+	{% if error_info %}
+		<div class="alert alert-success">
+		  <a href="#" class="close" data-dismiss="alert" aria-label="Close">&times;</a>
+     	  <p>{{ error_info }}</p>
+		</div>
+    {% endif %}
+
+    {% if edit %}
+        <div class="edit-component">
+          {% include 'snippets/add_new_album.html' %}
+        </div>
+    {% else %}
+        {% set user_albums_edit = "user_albums_edit_" + username %}
+      <div class="edit-component">
+        <a id="{{ user_albums_edit }}" href="{{ url_for('albums.albums_edit_route', username=username)}}">Edit Albums</a>
+      </div>
+    {% endif %}
+
+{% endblock %}

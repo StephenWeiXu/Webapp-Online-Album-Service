@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <header><a href="{{ url_for('main.main_route') }}">Photo Albums Collection</a></header>
+    <h1>ALBUM</h1>
+
+    <div class="information-content">
+    {% if pics %}
+        <table align="center">
+        {% for pic in pics %}
+            {% set photo_id = pic[:-4] %}
+              {% set pic_link_id = "pic_" + photo_id|string() + "_link" %}
+            <tr>
+            <td>
+                <a id="{{ pic_link_id }}" href="{{ url_for('pic.pic_route', id=photo_id) }}"><img src="{{ url_for('static', filename='images/'+pic) }}" width="100px" /></a>
+            </td>
+
+            {% if edit %}
+              {% set delete_pic_id = "delete_pic_" + photo_id|string() %}
+                <td>
+                    <form action="" method="POST">
+                      <input type="hidden" name="op" value="delete">
+                      <input type="hidden" name="albumid" value="{{ albumid }}">
+                      <input type="hidden" name="picid" value="{{ photo_id }}">
+                      <button  id="{{ delete_pic_id }}" class="btn btn-primary" type="submit">Delete</button>
+                    </form>
+                </td>
+            {% endif %}
+            </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+        <p>Oops...There is no photo for this album!</p>
+    {% endif %}
+  </div>
+
+    {% if error_info %}
+        <div class="alert alert-success">
+          <a href="#" class="close" data-dismiss="alert" aria-label="Close">&times;</a>
+          <p>{{ error_info }}</p>
+        </div>
+    {% endif %}
+
+
+    {% if edit %}
+      <div class="edit-component">
+        {% include 'snippets/add_new_photo.html' %}
+      </div>
+    {% else %}
+        <a href="{{ url_for('album.album_edit_route', id=albumid ) }}">
+            <button class="btn btn-primary btn-lg">Edit Album</button>
+        </a>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+	<div>
+    	<header>Photo Albums Collection</header>	    
+		<div class="username" >
+		    <h1>USERS</h1>
+		    <div "information-content">
+			    <table align="center">	
+				    {% if usernames %}
+				    	{% for username in usernames %}
+				   		{% set user_albums_id = "user_albums_" + username %}
+				    	<tr>
+				    		<td class="avatar"><span>{{ username[0].upper() }}</span></td>
+			    			<td><a id="{{ user_albums_id }}" href="{{ url_for('albums.albums_route', username=username) }}">{{ username }}</a> </td>
+			    			</td>
+			    		</tr>
+				    	{% endfor %}
+				    {% endif %}
+				</table>
+			</div>
+		</div>
+
+	    <footer>Designed by Wei Xu, Changhan Wang, and Zhuo Chen</footer>
+	</div>
+
+{% endblock %}
