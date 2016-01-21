@@ -13,7 +13,8 @@
 				   		{% set user_albums_id = "user_albums_" + username %}
 				    	<tr>
 				    		<td class="avatar"><span>{{ username[0].upper() }}</span></td>
-			    			<td><a id="{{ user_albums_id }}" href="{{ url_for('albums.albums_route', username=username) }}">{{ username }}</a> </td>
+				    		<td>{{ username }}</td>
+			    			<td><a id="{{ user_albums_id }}" href="{{ url_for('albums.albums_route', username=username) }}"><button class="btn btn-primary">View Albums</button></a> </td>
 			    			</td>
 			    		</tr>
 				    	{% endfor %}

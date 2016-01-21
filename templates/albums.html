@@ -11,12 +11,14 @@
     		{% for album in user_albums %}
               {% set album_link_id =  "album_" + album[0]|string() + "_link" %}
     			<tr>
-    				<td><a id="{{ album_link_id }}" href="{{ url_for('album.album_route', id=album[0])}}">{{ album[1] }}</a></td>
+                    <td>{{ album[1] }}</td>
+    				<td><a id="{{ album_link_id }}" href="{{ url_for('album.album_route', id=album[0])}}"><button class="btn btn-primary">View Album</button></a></td>
 
                     {% if edit %}
                         {% set delete_album_id = "delete_album_" + album[0]|string() %}
     				<td>
-                        <a href="{{ url_for('album.album_edit_route', id=album[0])}}" >Edit</a>
+                        <a href="{{ url_for('album.album_edit_route', id=album[0])}}" >
+                            <button class="btn btn-primary">Edit</button></a>
     				</td>
     				<td>
     					<form action="" method="POST">
@@ -48,7 +50,7 @@
     {% else %}
         {% set user_albums_edit = "user_albums_edit_" + username %}
       <div class="edit-component">
-        <a id="{{ user_albums_edit }}" href="{{ url_for('albums.albums_edit_route', username=username)}}">Edit Albums</a>
+        <a id="{{ user_albums_edit }}" href="{{ url_for('albums.albums_edit_route', username=username)}}"><button class="btn btn-primary btn-lg">Edit Albums</button></a>
       </div>
     {% endif %}
 
